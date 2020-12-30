@@ -10,13 +10,36 @@ void inputArr(int arr[])
 	}
 }
 
-void outputArr(int arr[])
+//void outputArr(int arr[])
+//{
+//	for	(int i = 0; i < 7; i++)
+//	{
+//		cout<<arr[i]<<" ";
+//	}
+//}
+
+
+// To be improved
+int countGuessedNum(int arr1[], int arr2[])
 {
-	for	(int i = 0; i < 7; i++)
+	int br = 0;
+	for (int i = 0; i < 7; i++)
 	{
-		cout<<arr[i]<<" ";
+		for (int j = 0; j < 7; j++)
+		{
+			if (arr1[i] == arr2[j])
+			{
+				br++;
+			}
+		}	
 	}
+	return br;
 }
+
+//int countGuessedNumAndPos(int arr1[], int arr2[]);
+//{
+//	// To be done
+//}
 
 void initialGreeting()
 {
@@ -54,8 +77,9 @@ bool menuAnotherPlayer(int arr1[], int arr2[])
 {
 	cout << "\n|---------SECONDPLAYERMENU----------|\n";
 	cout << "1. Player 1 input(numbers to be find)\n";
-	cout << "2. Player 2 input(numbers to guessed)\n"<<endl;
-	cout << "3. Show result\n"<<endl;
+	cout << "2. Player 2 input(numbers to guessed)\n";
+	cout << "3. Show how many numbers and possitions have been guessed\n";
+	cout << "4. Show how many numbers have been guessed\n";
 	cout << "9. Exit the option\n"<<endl;
 	int userInput = enterUserInput();
 	switch(userInput)
@@ -67,8 +91,10 @@ bool menuAnotherPlayer(int arr1[], int arr2[])
 			inputArr(arr2);
 			break;
 		case 3:
-			// outputArr(arr1);
-			// outputArr(arr2);
+			// cout << countGuessedNumAndPos(arr1, arr2);
+			break;
+		case 4:
+			cout <<"Count of guessed numbers: "<< countGuessedNum(arr1, arr2);
 			break;
 		case 9:
 			return false;
