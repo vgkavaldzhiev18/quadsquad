@@ -11,6 +11,15 @@ void inputArr(int arr[])
 	}
 }
 
+
+void printSpaces()
+{
+	for (int i = 0; i < 20; i++)
+	{
+		cout << " ";
+	}
+}
+
 //void outputArr(int arr[])
 //{
 //	for	(int i = 0; i < 7; i++)
@@ -44,12 +53,12 @@ int countGuessedNum(int arr1[], int arr2[])
 
 void initialGreeting()
 {
-	cout << u8"                      █ █ █ █▀▀ █   █▀▀ █▀█ █▄ ▄█ █▀▀  ▀█▀ █▀█" << endl;
-	cout << u8"                      ▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █ ▀ █ ██▄   █  █▄█" << endl;
+	cout << u8"                          █ █ █ █▀▀ █   █▀▀ █▀█ █▄ ▄█ █▀▀  ▀█▀ █▀█" << endl;
+	cout << u8"                          ▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █ ▀ █ ██▄   █  █▄█" << endl;
 	cout << endl;
-	cout << u8"█▄▄ █   █▀▀ ▀█▀ █▀▀ █▄█ █   █▀▀ ▀▄▀ █▀▀ █▀█ █▀▄ █▀▀   █▄▄ █▀█ █▀▀ ▄▀▄ █▄▀ █▀▀ █▀█ █▀▀ █" << endl;
-	cout << u8"█▄█ █▄▄ ██▄  █  █▄▄ █ █ █▄▄ ██▄  █  █▄▄ █▄█ █▄▀ ██▄   █▄█ █▀▄ ██▄ █▀█ █ █ ██▄ █▀▄ ▄██ ▄" << endl;
-	cout << u8"                                      Copyright©" << endl;
+	cout << u8"    █▄▄ █   █▀▀ ▀█▀ █▀▀ █▄█ █   █▀▀ ▀▄▀ █▀▀ █▀█ █▀▄ █▀▀   █▄▄ █▀█ █▀▀ ▄▀▄ █▄▀ █▀▀ █▀█ █▀▀ █" << endl;
+	cout << u8"    █▄█ █▄▄ ██▄  █  █▄▄ █ █ █▄▄ ██▄  █  █▄▄ █▄█ █▄▀ ██▄   █▄█ █▀▄ ██▄ █▀█ █ █ ██▄ █▀▄ ▄██ ▄" << endl;
+	cout << u8"                                          Copyright©" << endl;
 }
 
 void rules()
@@ -59,11 +68,11 @@ void rules()
 
 void showGoodbyeMessage()
 {
-	cout << u8"▀█▀ █▄█ ▄▀▄ █▄ █ █▄▀   ▀▄▀ █▀█ █ █   █▀▀ █▀█ █▀█   █▄█ █▀▀ █   █▀█ ▀█▀ █▄ █ █▀▀" << endl;
-	cout << u8" █  █ █ █▀█ █ ▀█ █ █    █  █▄█ █▄█   █▀  █▄█ █▀▄   █ █ ██▄ █▄▄ █▀▀ ▄█▄ █ ▀█ █▄█" << endl;
+	cout << u8"    ▀█▀ █▄█ ▄▀▄ █▄ █ █▄▀   ▀▄▀ █▀█ █ █   █▀▀ █▀█ █▀█   █▄█ █▀▀ █   █▀█ ▀█▀ █▄ █ █▀▀" << endl;
+	cout << u8"     █  █ █ █▀█ █ ▀█ █ █    █  █▄█ █▄█   █▀  █▄█ █▀▄   █ █ ██▄ █▄▄ █▀▀ ▄█▄ █ ▀█ █▄█" << endl;
 	cout << endl;
-	cout << u8"        █ █ █▀▀  █▀▀ ▄▀▄ █ █ █▀▀   ▀█▀ █▄█ █▀▀   █ █ █ █▀█ █▀█ █   █▀▄ █" << endl;
-	cout << u8"        █▄█ ▄██  ▄██ █▀█ ▀▄▀ ██▄    █  █ █ ██▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀ ▄" << endl;
+	cout << u8"            █ █ █▀▀  █▀▀ ▄▀▄ █ █ █▀▀   ▀█▀ █▄█ █▀▀   █ █ █ █▀█ █▀█ █   █▀▄ █" << endl;
+	cout << u8"            █▄█ ▄██  ▄██ █▀█ ▀▄▀ ██▄    █  █ █ ██▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀ ▄" << endl;
 
 }
 
@@ -74,14 +83,31 @@ int enterUserInput()
 	return userInput;
 }
 
+void printSecondMenu()
+{
+	cout << endl;
+	this_thread::sleep_for(chrono::milliseconds(2000));
+	printSpaces();  cout << u8"╔═════════════════════════════════════════════════════════════════╗" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║              |---------SECOND PLAYER MENU----------|            ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 1. Player 1 input(numbers to be find)                           ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 2. Player 2 input(numbers to guessed)                           ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 3. Show how many numbers and possitions have been guessed       ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 4. Show how many numbers have been guessed                      ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 9. Exit the option                                              ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+}
+
 bool menuAnotherPlayer(int arr1[], int arr2[])
 {
-	cout << "\n|---------SECONDPLAYERMENU----------|\n";
-	cout << "1. Player 1 input(numbers to be find)\n";
-	cout << "2. Player 2 input(numbers to guessed)\n";
-	cout << "3. Show how many numbers and possitions have been guessed\n";
-	cout << "4. Show how many numbers have been guessed\n";
-	cout << "9. Exit the option\n"<<endl;
+	printSecondMenu();
 	int userInput = enterUserInput();
 	switch(userInput)
 	{
@@ -105,16 +131,25 @@ bool menuAnotherPlayer(int arr1[], int arr2[])
 	return true;
 }
 
+
 void printFirstMenu()
 {
+	cout << endl;
 	this_thread::sleep_for(chrono::milliseconds(2000));
-	cout << u8"╔═════════════════════════════════════════════════════╗" << endl;
-	cout << u8"║              |---------MENU----------|              ║" << endl;
-	cout << u8"║ 1. Play against AI                                  ║" << endl;
-	cout << u8"║ 2. Play with another player                         ║" << endl;
-	cout << u8"║ 3. Rules                                            ║" << endl;
-	cout << u8"║ 9. Exit                                             ║" << endl;
-	cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
+	printSpaces();  cout << u8"╔═════════════════════════════════════════════════════╗" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║              |---------MENU----------|              ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 1. Play against AI                                  ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 2. Play with another player                         ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 3. Rules                                            ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"║ 9. Exit                                             ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
+	printSpaces();  cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
 }
 
 bool mainMenu(int arr1[], int arr2[])
