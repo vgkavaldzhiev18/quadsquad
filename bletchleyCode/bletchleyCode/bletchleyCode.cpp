@@ -1,5 +1,6 @@
 ﻿#include <iostream>
-#include <iomanip>
+#include <chrono>
+#include <thread>
 using namespace std;
 
 void inputArr(int arr[])
@@ -104,16 +105,21 @@ bool menuAnotherPlayer(int arr1[], int arr2[])
 	return true;
 }
 
+void printFirstMenu()
+{
+	this_thread::sleep_for(chrono::milliseconds(2000));
+	cout << u8"╔═════════════════════════════════════════════════════╗" << endl;
+	cout << u8"║              |---------MENU----------|              ║" << endl;
+	cout << u8"║ 1. Play against AI                                  ║" << endl;
+	cout << u8"║ 2. Play with another player                         ║" << endl;
+	cout << u8"║ 3. Rules                                            ║" << endl;
+	cout << u8"║ 9. Exit                                             ║" << endl;
+	cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
+}
 
 bool mainMenu(int arr1[], int arr2[])
 {
-	cout << u8"╔═════════════════════════════════════════════════════╗" << endl;
-	cout << u8"║" << "              |---------MENU----------|" << u8"              ║" << endl;
-	cout << u8"║" << " 1. Play against AI" << u8"                                  ║" << endl;
-	cout << u8"║" << " 2. Play with another player" << u8"                         ║" << endl;
-	cout << u8"║" << " 3. Rules" << u8"                                            ║" << endl;
-	cout << u8"║" << " 9. Exit" << u8"                                             ║" << endl;
-	cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
+	printFirstMenu();
 	cout << " Enter option from the menu by typing a number: "; 
 	int userInput = enterUserInput(); 
 
