@@ -56,8 +56,8 @@ void initialGreeting()
 	cout << u8"                          █ █ █ █▀▀ █   █▀▀ █▀█ █▄ ▄█ █▀▀  ▀█▀ █▀█" << endl;
 	cout << u8"                          ▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █ ▀ █ ██▄   █  █▄█" << endl;
 	cout << endl;
-	cout << u8"    █▄▄ █   █▀▀ ▀█▀ █▀▀ █▄█ █   █▀▀ ▀▄▀ █▀▀ █▀█ █▀▄ █▀▀   █▄▄ █▀█ █▀▀ ▄▀▄ █▄▀ █▀▀ █▀█ █▀▀ █" << endl;
-	cout << u8"    █▄█ █▄▄ ██▄  █  █▄▄ █ █ █▄▄ ██▄  █  █▄▄ █▄█ █▄▀ ██▄   █▄█ █▀▄ ██▄ █▀█ █ █ ██▄ █▀▄ ▄██ ▄" << endl;
+	cout << u8"  █▄▄ █   █▀▀ ▀█▀ █▀▀ █▄█ █   █▀▀ ▀▄▀   █▀▀ █▀█ █▀▄ █▀▀   █▄▄ █▀█ █▀▀ ▄▀▄ █▄▀ █▀▀ █▀█ █▀▀ █" << endl;
+	cout << u8"  █▄█ █▄▄ ██▄  █  █▄▄ █ █ █▄▄ ██▄  █    █▄▄ █▄█ █▄▀ ██▄   █▄█ █▀▄ ██▄ █▀█ █ █ ██▄ █▀▄ ▄██ ▄" << endl;
 	cout << u8"                                          Copyright©" << endl;
 }
 
@@ -103,6 +103,7 @@ void printSecondMenu()
 	this_thread::sleep_for(chrono::milliseconds(500));
 	printSpaces();  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
 	this_thread::sleep_for(chrono::milliseconds(500));
+	cout << endl;
 }
 
 bool menuAnotherPlayer(int arr1[], int arr2[])
@@ -150,12 +151,13 @@ void printFirstMenu()
 	this_thread::sleep_for(chrono::milliseconds(500));
 	printSpaces();  cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
 	this_thread::sleep_for(chrono::milliseconds(500));
+	cout << endl;
 }
 
 bool mainMenu(int arr1[], int arr2[])
 {
 	printFirstMenu();
-	cout << " Enter option from the menu by typing a number: "; 
+	cout << " Enter an option from the menu by typing a number: "; 
 	int userInput = enterUserInput(); 
 
 	
