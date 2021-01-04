@@ -12,9 +12,9 @@ void inputArr(int arr[])
 }
 
 
-void printSpaces()
+void printSpaces(unsigned short int n)
 {
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < n; i++)
 	{
 		cout << " ";
 	}
@@ -149,21 +149,21 @@ void printSecondMenu()
 {
 	cout << endl;
 	this_thread::sleep_for(chrono::milliseconds(1000));
-	printSpaces();  cout << u8"╔═════════════════════════════════════════════════════════════════╗" << endl;
+	printSpaces(14);  cout << u8"╔═════════════════════════════════════════════════════════════════╗" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces();  cout << u8"║              |---------SECOND PLAYER MENU----------|            ║" << endl;
+	printSpaces(14);  cout << u8"║              |---------SECOND PLAYER MENU----------|            ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces();  cout << u8"║ 1. Player 1 input(numbers to be find)                           ║" << endl;
+	printSpaces(14);  cout << u8"║ 1. Player 1 input(numbers to be find)                           ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces();  cout << u8"║ 2. Player 2 input(numbers to guessed)                           ║" << endl;
+	printSpaces(14);  cout << u8"║ 2. Player 2 input(numbers to guessed)                           ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces();  cout << u8"║ 3. Show how many numbers and possitions have been guessed       ║" << endl;
+	printSpaces(14);  cout << u8"║ 3. Show how many numbers and possitions have been guessed       ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces();  cout << u8"║ 4. Show how many numbers have been guessed                      ║" << endl;
+	printSpaces(14);  cout << u8"║ 4. Show how many numbers have been guessed                      ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces();  cout << u8"║ 9. Exit the option                                              ║" << endl;
+	printSpaces(14);  cout << u8"║ 9. Exit the option                                              ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces();  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
+	printSpaces(14);  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
 	cout << endl;
 }
@@ -199,19 +199,19 @@ void printFirstMenu()
 {
 	cout << endl;
 	this_thread::sleep_for(chrono::milliseconds(1000));
-	printSpaces();  cout << u8"╔═════════════════════════════════════════════════════╗" << endl;
+	printSpaces(20);  cout << u8"╔═════════════════════════════════════════════════════╗" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces();  cout << u8"║              |---------MENU----------|              ║" << endl;
+	printSpaces(20);  cout << u8"║              |---------MENU----------|              ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces();  cout << u8"║ 1. Play against AI                                  ║" << endl;
+	printSpaces(20);  cout << u8"║ 1. Play against AI                                  ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces();  cout << u8"║ 2. Play with another player                         ║" << endl;
+	printSpaces(20);  cout << u8"║ 2. Play with another player                         ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces();  cout << u8"║ 3. Rules                                            ║" << endl;
+	printSpaces(20);  cout << u8"║ 3. Rules                                            ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces();  cout << u8"║ 9. Exit                                             ║" << endl;
+	printSpaces(20);  cout << u8"║ 9. Exit                                             ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces();  cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
+	printSpaces(20);  cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
 	cout << endl;
 }
