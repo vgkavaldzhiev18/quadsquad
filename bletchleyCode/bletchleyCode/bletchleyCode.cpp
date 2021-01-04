@@ -46,10 +46,21 @@ int countGuessedNum(int arr1[], int arr2[])
 	return br;
 }
 
-//int countGuessedNumAndPos(int arr1[], int arr2[]);
-//{
-//	// To be done
-//}
+int countGuessedNumAndPos(int arr1[], int arr2[])
+{
+	int br = 0;
+	for (int i = 0; i < 7; i++)
+	{
+		for (int j = 0; j < 7; j++)
+		{
+			if (arr1[i] == arr2[j] && i == j)
+			{
+				br++;
+			}
+		}
+	}
+	return br;
+}
 
 void initialGreeting()
 {
@@ -119,7 +130,7 @@ bool menuAnotherPlayer(int arr1[], int arr2[])
 			inputArr(arr2);
 			break;
 		case 3:
-			// cout << countGuessedNumAndPos(arr1, arr2);
+			cout <<"Count of guessed numbers and possitions: "<< countGuessedNumAndPos(arr1, arr2);
 			break;
 		case 4:
 			cout <<"Count of guessed numbers: "<< countGuessedNum(arr1, arr2);
