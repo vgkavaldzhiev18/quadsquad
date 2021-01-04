@@ -74,16 +74,67 @@ void initialGreeting()
 
 void rules()
 {
-
+	cout << endl << endl;
+	cout << "                           _________________________________________________________________             " << endl;
+	cout << "                          |                                                                 |            " << endl;
+	cout << "                          |  Hey, CodeBreaker (it's your name for this mission)!            |            " << endl;
+	cout << "                          |  The Germans are up to something very bad right now and are     |            " << endl;
+	cout << "                          |  getting ready to attack but we can't decipher the locations    |            " << endl;
+	cout << "                          |  of their battle ships. Here's where you come in! You'll help   |            " << endl;
+	cout << "                          |  us figure out what the coordinates are and here's what you'll  |            " << endl;
+	cout << "                          |  have to do in a few steps:                                     |            " << endl;
+	cout << "                          |                                                                 |            " << endl;
+	cout << u8"                          |              • The location of a ship is coded in a             |            " << endl;
+	cout << "                          |                four-digit code whose digits are between         |            " << endl;
+	cout << "                          |                 0 and 7                                         |            " << endl;
+	cout << u8"                          |              • You'll tell us your prediction of 4 numbers      |            " << endl;
+	cout << "                          |                and we'll give you feedback                      |            " << endl;
+	cout << u8"                          |              • If you've guessed one or more numbers, the       |            " << endl;
+	cout << "                          |                message will be \"Guessed numbers\"                |            " << endl;
+	cout << u8"                          |              • If you've guessed the correct position of a      |            " << endl;
+	cout << "                          |                correct number, the message will be              |            " << endl;
+	cout << "                          |                \"Guessed numbers and positions\"                  |            " << endl;
+	cout << "                          |  (Sadly we can't tell you more than that since testing out      |            " << endl;
+	cout << "                          |  data takes a lot of time!)                                     |            " << endl;
+	cout << u8"                          |              • If you don't get the correct combination of      |            " << endl;
+	cout << "                         _|                numbers within 13 tries we're sorry to say this, |_           " << endl;
+	cout << "                      __/ |                but we're done for! So you better get to work    | \\_         " << endl;
+	cout << "                     /    |                right this instant, CodeBreaker!                 |   \\        " << endl;
+	cout << "                    |\\__  |                                                                 |  _/|       " << endl;
+	cout << "                    |   \\_|  Good luck! – A.T, G.W, H.A, B.T, S.M-B             *  *         |_/  |       " << endl;
+	cout << "                    |      \\__                                              *   __   *   __/     |       " << endl;
+	cout << "                    |         \\__                                          *   |__    *_/        |       " << endl;
+	cout << "                    |            \\__                                       *   |__ __/           |       " << endl;
+	cout << "                    |               \\__                                     *   __/              |       " << endl;
+	cout << "                    |                  \\__                                   __/                 |       " << endl;
+	cout << "                    |                     \\_________________________________/                    |       " << endl;
+	cout << "                    |                        \\__                       __/                       |       " << endl;
+	cout << "                    |                           \\__                 __/                          |       " << endl;
+	cout << "                    |                              \\_______________/                             |       " << endl;
+	cout << "                    |                                                                            |       " << endl;
+	cout << "                    |                                                                            |       " << endl;
+	cout << "                    |                                                                            |       " << endl;
+	cout << "                    |                                                                            |       " << endl;
+	cout << "                    |                                                                            |       " << endl;
+	cout << "                    |                                                                            |       " << endl;
+	cout << "                    |____________________________________________________________________________|       " << endl;
+	cout << "                                                                                                         " << endl;
 }
 
 void showGoodbyeMessage()
 {
-	cout << u8"    ▀█▀ █▄█ ▄▀▄ █▄ █ █▄▀   ▀▄▀ █▀█ █ █   █▀▀ █▀█ █▀█   █▄█ █▀▀ █   █▀█ ▀█▀ █▄ █ █▀▀" << endl;
-	cout << u8"     █  █ █ █▀█ █ ▀█ █ █    █  █▄█ █▄█   █▀  █▄█ █▀▄   █ █ ██▄ █▄▄ █▀▀ ▄█▄ █ ▀█ █▄█" << endl;
+	cout << endl << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	cout << u8"      ▀█▀ █▄█ ▄▀▄ █▄ █ █▄▀   ▀▄▀ █▀█ █ █   █▀▀ █▀█ █▀█   █▄█ █▀▀ █   █▀█ ▀█▀ █▄ █ █▀▀" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	cout << u8"       █  █ █ █▀█ █ ▀█ █ █    █  █▄█ █▄█   █▀  █▄█ █▀▄   █ █ ██▄ █▄▄ █▀▀ ▄█▄ █ ▀█ █▄█" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
 	cout << endl;
-	cout << u8"            █ █ █▀▀  █▀▀ ▄▀▄ █ █ █▀▀   ▀█▀ █▄█ █▀▀   █ █ █ █▀█ █▀█ █   █▀▄ █" << endl;
-	cout << u8"            █▄█ ▄██  ▄██ █▀█ ▀▄▀ ██▄    █  █ █ ██▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀ ▄" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	cout << u8"              █ █ █▀▀  █▀▀ ▄▀▄ █ █ █▀▀   ▀█▀ █▄█ █▀▀   █ █ █ █▀█ █▀█ █   █▀▄ █" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	cout << u8"              █▄█ ▄██  ▄██ █▀█ ▀▄▀ ██▄    █  █ █ ██▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀ ▄" << endl;
+	this_thread::sleep_for(chrono::milliseconds(500));
 
 }
 
@@ -97,23 +148,23 @@ int enterUserInput()
 void printSecondMenu()
 {
 	cout << endl;
-	this_thread::sleep_for(chrono::milliseconds(2000));
+	this_thread::sleep_for(chrono::milliseconds(1000));
 	printSpaces();  cout << u8"╔═════════════════════════════════════════════════════════════════╗" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces();  cout << u8"║              |---------SECOND PLAYER MENU----------|            ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces();  cout << u8"║ 1. Player 1 input(numbers to be find)                           ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces();  cout << u8"║ 2. Player 2 input(numbers to guessed)                           ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces();  cout << u8"║ 3. Show how many numbers and possitions have been guessed       ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces();  cout << u8"║ 4. Show how many numbers have been guessed                      ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces();  cout << u8"║ 9. Exit the option                                              ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces();  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(300));
 	cout << endl;
 }
 
@@ -147,21 +198,21 @@ bool menuAnotherPlayer(int arr1[], int arr2[])
 void printFirstMenu()
 {
 	cout << endl;
-	this_thread::sleep_for(chrono::milliseconds(2000));
+	this_thread::sleep_for(chrono::milliseconds(1000));
 	printSpaces();  cout << u8"╔═════════════════════════════════════════════════════╗" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(400));
 	printSpaces();  cout << u8"║              |---------MENU----------|              ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(400));
 	printSpaces();  cout << u8"║ 1. Play against AI                                  ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(400));
 	printSpaces();  cout << u8"║ 2. Play with another player                         ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(400));
 	printSpaces();  cout << u8"║ 3. Rules                                            ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(400));
 	printSpaces();  cout << u8"║ 9. Exit                                             ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(400));
 	printSpaces();  cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
-	this_thread::sleep_for(chrono::milliseconds(500));
+	this_thread::sleep_for(chrono::milliseconds(400));
 	cout << endl;
 }
 
@@ -180,10 +231,10 @@ bool mainMenu(int arr1[], int arr2[])
 		while (menuAnotherPlayer(arr1,arr2));
 		break;
 	case 3: 
-		// rules();
+		rules();
 		break;
 	case 9:
-		// showGoodbyeMessage();
+		showGoodbyeMessage();
 		return false;
 		break;
 
