@@ -30,9 +30,8 @@ void printSpaces(unsigned short int n)
 
 
 // To be improved
-int countGuessedNum(int arr1[], int arr2[])
+int countGuessedNum(int arr1[], int arr2[], int br)
 {
-	int br = 0;
 	for (int i = 0; i < 7; i++)
 	{
 		for (int j = 0; j < 7; j++)
@@ -46,9 +45,9 @@ int countGuessedNum(int arr1[], int arr2[])
 	return br;
 }
 
-int countGuessedNumAndPos(int arr1[], int arr2[])
+int countGuessedNumAndPos(int arr1[], int arr2[], int br)
 {
-	int br = 0;
+	
 	for (int i = 0; i < 7; i++)
 	{
 		for (int j = 0; j < 7; j++)
@@ -168,23 +167,58 @@ void printSecondMenu()
 	cout << endl;
 }
 
-bool menuAnotherPlayer(int arr1[], int arr2[])
+bool menuAnotherPlayer(int arr1[], int arr2[], int br)
 {
 	printSecondMenu();
+	cout << " Enter an option from the menu by typing a number: ";
 	int userInput = enterUserInput();
+	int counter = 0;
 	switch(userInput)
 	{
 		case 1:
+			cout << "Enter your numbers: ";
 			inputArr(arr1);
 			break;
 		case 2:
-			inputArr(arr2);
+			// inputArr(arr2); /*To be removed*/
 			break;
 		case 3:
-			cout <<"Count of guessed numbers and possitions: "<< countGuessedNumAndPos(arr1, arr2);
+			
+			for (int i = 0; i < 13; i++)
+			{
+				cout << "Enter your numbers: ";
+				inputArr(arr2);
+				cout << "\nCount of guessed numbers and possitions: "<<endl;
+				cout << countGuessedNumAndPos(arr1, arr2, br);
+				int count1 = countGuessedNumAndPos(arr1, arr2, br);
+				if (count1 == 7) // to be fixed
+				{
+					break;
+				}
+				else if (count1 < 7)
+				{
+					cout << "Keep trying!"<<endl;
+				}
+			}
 			break;
 		case 4:
-			cout <<"Count of guessed numbers: "<< countGuessedNum(arr1, arr2);
+			
+			for (int i = 0; i < 13; i++)
+			{
+				cout << "Enter your numbers: ";
+				inputArr(arr2);
+				cout << "Count of guessed numbers: ";
+				cout << countGuessedNum(arr1, arr2, br);
+				int count2 = countGuessedNum(arr1, arr2, br);
+				if (count2 == 7) // to be fixed
+				{
+					break;
+				}
+				else if (count2 < 7)
+				{
+					cout << "Keep trying!";
+				}
+			}
 			break;
 		case 9:
 			return false;
@@ -216,7 +250,7 @@ void printFirstMenu()
 	cout << endl;
 }
 
-bool mainMenu(int arr1[], int arr2[])
+bool mainMenu(int arr1[], int arr2[], int br)
 {
 	printFirstMenu();
 	cout << " Enter an option from the menu by typing a number: "; 
@@ -228,7 +262,7 @@ bool mainMenu(int arr1[], int arr2[])
 	case 1:
 		break;
 	case 2:
-		while (menuAnotherPlayer(arr1,arr2));
+		while (menuAnotherPlayer(arr1,arr2,br));
 		break;
 	case 3: 
 		rules();
@@ -248,5 +282,6 @@ int main()
 	system("chcp 65001");
 	initialGreeting();
 	int arr1[10],arr2[10];
-	while (mainMenu(arr1,arr2));
+	int br = 0;
+	while (mainMenu(arr1,arr2,br));
 }
