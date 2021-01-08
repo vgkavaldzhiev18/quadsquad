@@ -188,7 +188,7 @@ bool menuAnotherPlayer(int arr1[], int arr2[], int br)
 			{
 				cout << "Enter your numbers: ";
 				inputArr(arr2);
-				cout << "\nCount of guessed numbers and possitions: "<<endl;
+				cout << "\nCount of guessed numbers and possitions: ";
 				cout << countGuessedNumAndPos(arr1, arr2, br);
 				int count1 = countGuessedNumAndPos(arr1, arr2, br);
 				if (count1 == 7) // to be fixed
@@ -197,7 +197,7 @@ bool menuAnotherPlayer(int arr1[], int arr2[], int br)
 				}
 				else if (count1 < 7)
 				{
-					cout << "Keep trying!"<<endl;
+					cout << "\nKeep trying!"<<endl;
 				}
 			}
 			break;
