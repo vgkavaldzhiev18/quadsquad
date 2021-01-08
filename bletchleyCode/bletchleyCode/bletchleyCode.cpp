@@ -1,16 +1,26 @@
 ﻿#include <iostream>
 #include <chrono>
 #include <thread>
+#include <stdlib.h>
+#include <time.h>
 using namespace std;
 
+// DATA LAYER
 void inputArr(int arr[])
 {
-	for	(int i = 0; i < 7; i++)
+	for	(int i = 0; i < 4; i++)
 	{
 		cin>>arr[i];
 	}
 }
 
+void genArr(int arr[])
+{
+	for (int i = 0; i < 4; i++)
+	{
+		arr[i] = rand() % 7;
+	}
+}
 
 void printSpaces(unsigned short int n)
 {
@@ -20,21 +30,11 @@ void printSpaces(unsigned short int n)
 	}
 }
 
-//void outputArr(int arr[])
-//{
-//	for	(int i = 0; i < 7; i++)
-//	{
-//		cout<<arr[i]<<" ";
-//	}
-//}
-
-
-// To be improved
 int countGuessedNum(int arr1[], int arr2[], int br)
 {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 7; j++)
+		for (int j = 0; j < 4; j++)
 		{
 			if (arr1[i] == arr2[j])
 			{
@@ -48,9 +48,9 @@ int countGuessedNum(int arr1[], int arr2[], int br)
 int countGuessedNumAndPos(int arr1[], int arr2[], int br)
 {
 	
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 7; j++)
+		for (int j = 0; j < 4; j++)
 		{
 			if (arr1[i] == arr2[j] && i == j)
 			{
@@ -59,6 +59,59 @@ int countGuessedNumAndPos(int arr1[], int arr2[], int br)
 		}
 	}
 	return br;
+}
+
+int enterUserInput()
+{
+	int userInput;
+	cin >> userInput;
+	return userInput;
+}
+
+// PRESENTATION LAYER
+
+void showGuessedNumAndPos(int* arr1, int br)
+{
+	int arr2[10];
+	for (int i = 0; i < 13; i++)
+	{
+		cout << "Enter your numbers: ";
+		inputArr(arr2);
+		cout << "\nCount of guessed numbers and positions: ";
+		cout << countGuessedNumAndPos(arr1, arr2, br);
+		int count1 = countGuessedNumAndPos(arr1, arr2, br);
+		if (count1 == 4)
+		{
+			cout << "You've guessed all the numbers and their positions!" << endl;
+			break;
+		}
+		else if (count1 < 4)
+		{
+			cout << "\nKeep trying!" << endl;
+		}
+	}
+}
+
+void showGuessedNum(int* arr1, int br)
+{
+	int arr2[10];
+	for (int i = 0; i < 13; i++)
+	{
+		cout << "Enter your numbers: ";
+		inputArr(arr2);
+		cout << "\nCount of guessed numbers: ";
+		cout << countGuessedNum(arr1, arr2, br);
+		int count2 = countGuessedNum(arr1, arr2, br);
+		if (count2 == 4)
+		{
+			cout << "You've guessed all the numbers!" << endl;
+			break;
+		}
+		else if (count2 < 4)
+		{
+			cout << "\nKeep trying!" << endl;
+		}
+	}
 }
 
 void initialGreeting()
@@ -137,99 +190,93 @@ void showGoodbyeMessage()
 
 }
 
-int enterUserInput()
+bool againstAI(int arr1[], int br)
 {
-	int userInput;
-	cin >> userInput;
-	return userInput;
+	// menu
+	cout << " Choose an option from the menu by typing a number: ";
+	int userInput = enterUserInput();
+	switch (userInput)
+	{
+	case 1:
+		// easy mode
+		break;
+	case 2:
+		// hard mode
+		break;
+	case 3:
+		return false;
+		break;
+	default: cout << "\n Please enter a valid input!\n"; break;
+	}
+
+	return true;
 }
 
-void printSecondMenu()
+bool againstPerson(int arr1[], int br)
+{
+	// menu
+	cout << " Choose an option from the menu by typing a number: ";
+	int userInput = enterUserInput();
+	switch (userInput)
+	{
+	case 1:
+		// easy mode
+		break;
+	case 2:
+		// hard mode
+		break;
+	case 3:
+		return false;
+		break;
+	default: cout << "\n Please enter a valid input!\n"; break;
+	}
+
+	return true;
+}
+
+void printGameMenu()
 {
 	cout << endl;
 	this_thread::sleep_for(chrono::milliseconds(1000));
 	printSpaces(14);  cout << u8"╔═════════════════════════════════════════════════════════════════╗" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║              |---------SECOND PLAYER MENU----------|            ║" << endl;
+	printSpaces(14);  cout << u8"║                  |---------LEVELS MENU----------|               ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║ 1. Player 1 input(numbers to be find)                           ║" << endl;
+	printSpaces(14);  cout << u8"║ 1. Play against AI                                              ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║ 2. Player 2 input(numbers to guessed)                           ║" << endl;
+	printSpaces(14);  cout << u8"║ 2. Play against a person                                        ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║ 3. Show how many numbers and possitions have been guessed       ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║ 4. Show how many numbers have been guessed                      ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║ 9. Exit the option                                              ║" << endl;
+	printSpaces(14);  cout << u8"║ 3. Exit the option                                              ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces(14);  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
 	cout << endl;
 }
 
-bool menuAnotherPlayer(int arr1[], int arr2[], int br)
+bool menuLevels(int arr1[], int br)
 {
-	printSecondMenu();
-	cout << " Enter an option from the menu by typing a number: ";
+	printGameMenu();
+	cout << " Choose an option from the menu by typing a number: ";
 	int userInput = enterUserInput();
-	int counter = 0;
 	switch(userInput)
 	{
 		case 1:
-			cout << "Enter your numbers: ";
-			inputArr(arr1);
+			while (againstAI(arr1,br));
 			break;
-		case 2:
-			// inputArr(arr2); /*To be removed*/
+		case 2: 
+			while (againstPerson(arr1,br));
 			break;
 		case 3:
-			
-			for (int i = 0; i < 13; i++)
-			{
-				cout << "Enter your numbers: ";
-				inputArr(arr2);
-				cout << "\nCount of guessed numbers and possitions: ";
-				cout << countGuessedNumAndPos(arr1, arr2, br);
-				int count1 = countGuessedNumAndPos(arr1, arr2, br);
-				if (count1 == 7) // to be fixed
-				{
-					break;
-				}
-				else if (count1 < 7)
-				{
-					cout << "\nKeep trying!"<<endl;
-				}
-			}
-			break;
-		case 4:
-			
-			for (int i = 0; i < 13; i++)
-			{
-				cout << "Enter your numbers: ";
-				inputArr(arr2);
-				cout << "Count of guessed numbers: ";
-				cout << countGuessedNum(arr1, arr2, br);
-				int count2 = countGuessedNum(arr1, arr2, br);
-				if (count2 == 7) // to be fixed
-				{
-					break;
-				}
-				else if (count2 < 7)
-				{
-					cout << "Keep trying!";
-				}
-			}
-			break;
-		case 9:
 			return false;
 			break;
+		default: cout << "\n Please enter a valid input!\n"; break;
 	}
 
 	return true;
 }
 
 
-void printFirstMenu()
+void printMainMenu()
 {
 	cout << endl;
 	this_thread::sleep_for(chrono::milliseconds(1000));
@@ -237,37 +284,32 @@ void printFirstMenu()
 	this_thread::sleep_for(chrono::milliseconds(400));
 	printSpaces(20);  cout << u8"║              |---------MENU----------|              ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces(20);  cout << u8"║ 1. Play against AI                                  ║" << endl;
+	printSpaces(20);  cout << u8"║ 1. Play game                                        ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces(20);  cout << u8"║ 2. Play with another player                         ║" << endl;
+	printSpaces(20);  cout << u8"║ 2. Rules                                            ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces(20);  cout << u8"║ 3. Rules                                            ║" << endl;
-	this_thread::sleep_for(chrono::milliseconds(400));
-	printSpaces(20);  cout << u8"║ 9. Exit                                             ║" << endl;
+	printSpaces(20);  cout << u8"║ 3. Exit                                             ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
 	printSpaces(20);  cout << u8"╚═════════════════════════════════════════════════════╝" << endl;
 	this_thread::sleep_for(chrono::milliseconds(400));
 	cout << endl;
 }
 
-bool mainMenu(int arr1[], int arr2[], int br)
+bool mainMenu(int arr1[], int br)
 {
-	printFirstMenu();
-	cout << " Enter an option from the menu by typing a number: "; 
+	printMainMenu();
+	cout << " Choose an option from the menu by typing a number: "; 
 	int userInput = enterUserInput(); 
 
-	
 	switch (userInput)
 	{
 	case 1:
+		while (menuLevels(arr1,br));
 		break;
-	case 2:
-		while (menuAnotherPlayer(arr1,arr2,br));
-		break;
-	case 3: 
+	case 2: 
 		rules();
 		break;
-	case 9:
+	case 3:
 		showGoodbyeMessage();
 		return false;
 		break;
@@ -279,9 +321,10 @@ bool mainMenu(int arr1[], int arr2[], int br)
 
 int main()
 {
+	srand(time(NULL));
 	system("chcp 65001");
 	initialGreeting();
 	int arr1[10],arr2[10];
 	int br = 0;
-	while (mainMenu(arr1,arr2,br));
+	while (mainMenu(arr1,br));
 }
