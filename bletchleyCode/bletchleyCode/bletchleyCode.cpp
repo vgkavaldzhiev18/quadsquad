@@ -6,11 +6,25 @@
 using namespace std;
 
 // DATA LAYER
-void inputArr(int arr[])
+void inputArrEasy(int arr[])
 {
 	for	(int i = 0; i < 4; i++)
 	{
-		cin>>arr[i];
+		cin >> arr[i];
+	}
+	if (arr[0] == arr[1] or arr[0] == arr[2] or arr[0] == arr[3] or arr[1] == arr[2] or arr[1] == arr[3] or arr[2] == arr[3])
+	{
+		cout << "Please enter code without repeating digits!" << endl;
+		inputArrEasy(arr);
+	}
+			
+}
+
+void inputArrHard(int arr[])
+{
+	for	(int i = 0; i < 4; i++)
+	{
+		cin >> arr[i];
 	}
 }
 
@@ -20,6 +34,11 @@ void genArr(int arr[])
 	{
 		arr[i] = rand() % 7;
 	}
+	if (arr[0] == arr[1] or arr[0] == arr[2] or arr[0] == arr[3] or arr[1] == arr[2] or arr[1] == arr[3] or arr[2] == arr[3])
+	{
+		genArr(arr);
+	}
+
 }
 
 void printSpaces(unsigned short int n)
@@ -70,49 +89,49 @@ int enterUserInput()
 
 // PRESENTATION LAYER
 
-void showGuessedNumAndPos(int* arr1, int br)
-{
-	int arr2[10];
-	for (int i = 0; i < 13; i++)
-	{
-		cout << "Enter your numbers: ";
-		inputArr(arr2);
-		cout << "\nCount of guessed numbers and positions: ";
-		cout << countGuessedNumAndPos(arr1, arr2, br);
-		int count1 = countGuessedNumAndPos(arr1, arr2, br);
-		if (count1 == 4)
-		{
-			cout << "You've guessed all the numbers and their positions!" << endl;
-			break;
-		}
-		else if (count1 < 4)
-		{
-			cout << "\nKeep trying!" << endl;
-		}
-	}
-}
+//void showGuessedNumAndPos(int* arr1, int br)
+//{
+//	int arr2[10];
+//	for (int i = 0; i < 13; i++)
+//	{
+//		cout << "Enter your numbers: ";
+//		inputArr(arr2);
+//		cout << "\nCount of guessed numbers and positions: ";
+//		cout << countGuessedNumAndPos(arr1, arr2, br);
+//		int count1 = countGuessedNumAndPos(arr1, arr2, br);
+//		if (count1 == 4)
+//		{
+//			cout << "You've guessed all the numbers and their positions!" << endl;
+//			break;
+//		}
+//		else if (count1 < 4)
+//		{
+//			cout << "\nKeep trying!" << endl;
+//		}
+//	}
+//}
 
-void showGuessedNum(int* arr1, int br)
-{
-	int arr2[10];
-	for (int i = 0; i < 13; i++)
-	{
-		cout << "Enter your numbers: ";
-		inputArr(arr2);
-		cout << "\nCount of guessed numbers: ";
-		cout << countGuessedNum(arr1, arr2, br);
-		int count2 = countGuessedNum(arr1, arr2, br);
-		if (count2 == 4)
-		{
-			cout << "You've guessed all the numbers!" << endl;
-			break;
-		}
-		else if (count2 < 4)
-		{
-			cout << "\nKeep trying!" << endl;
-		}
-	}
-}
+//void showGuessedNum(int* arr1, int br)
+//{
+//	int arr2[10];
+//	for (int i = 0; i < 13; i++)
+//	{
+//		cout << "Enter your numbers: ";
+//		inputArr(arr2);
+//		cout << "\nCount of guessed numbers: ";
+//		cout << countGuessedNum(arr1, arr2, br);
+//		int count2 = countGuessedNum(arr1, arr2, br);
+//		if (count2 == 4)
+//		{
+//			cout << "You've guessed all the numbers!" << endl;
+//			break;
+//		}
+//		else if (count2 < 4)
+//		{
+//			cout << "\nKeep trying!" << endl;
+//		}
+//	}
+//}
 
 void initialGreeting()
 {
@@ -187,43 +206,173 @@ void showGoodbyeMessage()
 	this_thread::sleep_for(chrono::milliseconds(300));
 	cout << u8"              █▄█ ▄██  ▄██ █▀█ ▀▄▀ ██▄    █  █ █ ██▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀ ▄" << endl;
 	this_thread::sleep_for(chrono::milliseconds(500));
+}
 
+void playAI(int secretCode[], int cnt)
+{
+	genArr(secretCode);
+
+	int codeGuess[10];
+	for (int i = 0; i < 13; i++)
+	{
+		cout << "Enter your guess: ";
+		inputArrEasy(codeGuess);
+
+		cout << "\nCount of guessed numbers: ";
+		cout << countGuessedNum(secretCode, codeGuess, cnt);
+		cout << "\nCount of guessed numbers and positions: ";
+		cout << countGuessedNumAndPos(secretCode, codeGuess, cnt);
+
+		int countNumAndPos = countGuessedNumAndPos(secretCode, codeGuess, cnt);
+		int countNum = countGuessedNum(secretCode, codeGuess, cnt);
+
+		if (countNum == 4 && countNumAndPos == 4)
+		{
+			cout << "\nYou've won!" << endl;
+			break;
+		}
+		else if (countNum < 4 or countNumAndPos < 4)
+		{
+			cout << "\nKeep trying!" << endl;
+		}
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		cout << secretCode[i] << " ";
+	}
+}
+
+
+
+void printAIMenu()
+{
+	cout << endl;
+	this_thread::sleep_for(chrono::milliseconds(1000));
+	printSpaces(14);  cout << u8"╔═════════════════════════════════════════════════════════════════╗" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"║              |---------PLAY AGAINST COMPUTER----------|         ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"║ 1. Play                                                         ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"║ 2. Exit                                                         ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	cout << endl;
 }
 
 bool againstAI(int arr1[], int br)
 {
-	// menu
+	printAIMenu();
 	cout << " Choose an option from the menu by typing a number: ";
 	int userInput = enterUserInput();
 	switch (userInput)
 	{
 	case 1:
-		// easy mode
+		playAI(arr1, br);
 		break;
 	case 2:
-		// hard mode
-		break;
-	case 3:
 		return false;
 		break;
 	default: cout << "\n Please enter a valid input!\n"; break;
 	}
 
 	return true;
+}
+
+void easyPerson(int secretCode[], int cnt)
+{
+	cout << "Enter the secret code: ";
+	inputArrEasy(secretCode);
+
+	int codeGuess[10];
+	for (int i = 0; i < 13; i++)
+	{
+		cout << "Enter your guess: ";
+		inputArrEasy(codeGuess);
+
+		cout << "\nCount of guessed numbers: ";
+		cout << countGuessedNum(secretCode, codeGuess, cnt);
+		cout << "\nCount of guessed numbers and positions: ";
+		cout << countGuessedNumAndPos(secretCode, codeGuess, cnt);
+
+		int countNumAndPos = countGuessedNumAndPos(secretCode, codeGuess, cnt);
+		int countNum = countGuessedNum(secretCode, codeGuess, cnt);
+
+		if (countNum == 4 && countNumAndPos == 4)
+		{
+			cout << "\nYou've won!" << endl;
+			break;
+		}
+		else if (countNum < 4 or countNumAndPos < 4)
+		{
+			cout << "\nKeep trying!" << endl;
+		}
+	}
+}
+
+void hardPerson(int secretCode[], int cnt)
+{
+	cout << "Enter the secret code: ";
+	inputArrHard(secretCode);
+
+	int codeGuess[10];
+	for(int i = 0; i < 13; i++)
+	{
+		cout << "Enter yout guess: ";
+		inputArrHard(codeGuess);
+
+		cout << "\nCount of guessed numbers: ";
+		cout << countGuessedNum(secretCode, codeGuess, cnt);
+		cout << "\nCount of guessed numbers and positions: ";
+		cout << countGuessedNumAndPos(secretCode, codeGuess, cnt);
+
+		int countNumAndPos = countGuessedNumAndPos(secretCode, codeGuess, cnt);
+		int countNum = countGuessedNum(secretCode, codeGuess, cnt);
+
+		if (countNum == 4 && countNumAndPos == 4)
+		{
+			cout << "\nYou've won!" << endl;
+			break;
+		}
+		else if (countNum < 4 or countNumAndPos < 4)
+		{
+			cout << "\nKeep trying!" << endl;
+		}
+	}
+}
+
+void printPersonMenu()
+{
+	cout << endl;
+	this_thread::sleep_for(chrono::milliseconds(1000));
+	printSpaces(14);  cout << u8"╔═════════════════════════════════════════════════════════════════╗" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"║               |---------PLAY AGAINST PERSON----------|          ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"║ 1. Easy mode (no repeating digits in code)                      ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"║ 2. Hard mode (repeating digits in code)                         ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"║ 3. Exit                                                         ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	cout << endl;
 }
 
 bool againstPerson(int arr1[], int br)
 {
-	// menu
+	printPersonMenu();
 	cout << " Choose an option from the menu by typing a number: ";
 	int userInput = enterUserInput();
 	switch (userInput)
 	{
 	case 1:
-		// easy mode
+		easyPerson(arr1, br);
 		break;
 	case 2:
-		// hard mode
+		hardPerson(arr1, br);
 		break;
 	case 3:
 		return false;
@@ -233,6 +382,7 @@ bool againstPerson(int arr1[], int br)
 
 	return true;
 }
+
 
 void printGameMenu()
 {
@@ -246,7 +396,7 @@ void printGameMenu()
 	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces(14);  cout << u8"║ 2. Play against a person                                        ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║ 3. Exit the option                                              ║" << endl;
+	printSpaces(14);  cout << u8"║ 3. Exit                                                         ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces(14);  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
