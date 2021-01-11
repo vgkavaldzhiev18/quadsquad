@@ -3,6 +3,8 @@
 #include <thread>
 #include <stdlib.h>
 #include <time.h>
+#include <cctype>
+
 using namespace std;
 
 // DATA LAYER
@@ -28,7 +30,7 @@ void inputArrHard(int arr[])
 	}
 }
 
-void genArr(int arr[])
+void genArrEasy(int arr[])
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -36,9 +38,16 @@ void genArr(int arr[])
 	}
 	if (arr[0] == arr[1] or arr[0] == arr[2] or arr[0] == arr[3] or arr[1] == arr[2] or arr[1] == arr[3] or arr[2] == arr[3])
 	{
-		genArr(arr);
+		genArrEasy(arr);
 	}
 
+}
+void genArrHard(int arr[])
+{
+	for (int i = 0; i < 4; i++)
+	{
+		arr[i] = rand() % 7;
+	}
 }
 
 void printSpaces(unsigned short int n)
@@ -88,50 +97,6 @@ int enterUserInput()
 }
 
 // PRESENTATION LAYER
-
-//void showGuessedNumAndPos(int* arr1, int br)
-//{
-//	int arr2[10];
-//	for (int i = 0; i < 13; i++)
-//	{
-//		cout << "Enter your numbers: ";
-//		inputArr(arr2);
-//		cout << "\nCount of guessed numbers and positions: ";
-//		cout << countGuessedNumAndPos(arr1, arr2, br);
-//		int count1 = countGuessedNumAndPos(arr1, arr2, br);
-//		if (count1 == 4)
-//		{
-//			cout << "You've guessed all the numbers and their positions!" << endl;
-//			break;
-//		}
-//		else if (count1 < 4)
-//		{
-//			cout << "\nKeep trying!" << endl;
-//		}
-//	}
-//}
-
-//void showGuessedNum(int* arr1, int br)
-//{
-//	int arr2[10];
-//	for (int i = 0; i < 13; i++)
-//	{
-//		cout << "Enter your numbers: ";
-//		inputArr(arr2);
-//		cout << "\nCount of guessed numbers: ";
-//		cout << countGuessedNum(arr1, arr2, br);
-//		int count2 = countGuessedNum(arr1, arr2, br);
-//		if (count2 == 4)
-//		{
-//			cout << "You've guessed all the numbers!" << endl;
-//			break;
-//		}
-//		else if (count2 < 4)
-//		{
-//			cout << "\nKeep trying!" << endl;
-//		}
-//	}
-//}
 
 void initialGreeting()
 {
@@ -190,6 +155,28 @@ void rules()
 	cout << "                    |                                                                            |       " << endl;
 	cout << "                    |____________________________________________________________________________|       " << endl;
 	cout << "                                                                                                         " << endl;
+	cout << endl << endl << "Enter one (1) to go back to the home screen: ";
+	char choice;
+	bool work = true;
+	while (work)
+	{
+		cin >> choice;
+		if (isdigit(choice))
+		{
+			if (choice == '1')
+			{
+				work = false;
+			}
+			else
+			{
+				cout << "Enter the correct number! (one): ";
+			}
+		}
+		else
+		{
+			cout << "Enter a number! (one): ";
+		}
+	}
 }
 
 void showGoodbyeMessage()
@@ -208,9 +195,9 @@ void showGoodbyeMessage()
 	this_thread::sleep_for(chrono::milliseconds(500));
 }
 
-void playAI(int secretCode[], int cnt)
+void playAIEasy(int secretCode[], int cnt)
 {
-	genArr(secretCode);
+	genArrEasy(secretCode);
 
 	int codeGuess[10];
 	for (int i = 0; i < 13; i++)
@@ -231,18 +218,70 @@ void playAI(int secretCode[], int cnt)
 			cout << "\nYou've won!" << endl;
 			break;
 		}
-		else if (countNum < 4 or countNumAndPos < 4)
+		else if ((countNum < 4 or countNumAndPos < 4) and i < 12)
 		{
 			cout << "\nKeep trying!" << endl;
 		}
-	}
-	for (int i = 0; i < 4; i++)
-	{
-		cout << secretCode[i] << " ";
+		else if ((countNum < 4 or countNumAndPos < 4) and i == 12)
+		{
+			cout << endl;
+			printSpaces(22);  cout << u8"╔═════════════════════════════════════════════════╗" << endl;
+			printSpaces(22);  cout << u8"║                   YOU'VE LOST!                  ║" << endl;
+			printSpaces(22);  cout << u8"║                                                 ║" << endl;
+			printSpaces(22);  cout << u8"║  The code of the germans was: ";
+			for (int i = 0; i < 4; i++)
+			{
+				cout << secretCode[i] << " ";
+			}
+			cout << u8"          ║" << endl;
+			printSpaces(22);  cout << u8"╚═════════════════════════════════════════════════╝" << endl;
+		}
 	}
 }
 
+void playAIHard(int secretCode[], int cnt)
+{
+	genArrHard(secretCode);
 
+	int codeGuess[10];
+	for (int i = 0; i < 13; i++)
+	{
+		cout << "Enter your guess: ";
+		inputArrHard(codeGuess);
+
+		cout << "\nCount of guessed numbers: ";
+		cout << countGuessedNum(secretCode, codeGuess, cnt);
+		cout << "\nCount of guessed numbers and positions: ";
+		cout << countGuessedNumAndPos(secretCode, codeGuess, cnt);
+
+		int countNumAndPos = countGuessedNumAndPos(secretCode, codeGuess, cnt);
+		int countNum = countGuessedNum(secretCode, codeGuess, cnt);
+
+		if (countNum == 4 && countNumAndPos == 4)
+		{
+			cout << "\nYou've won!" << endl;
+			break;
+		}
+		else if ((countNum < 4 or countNumAndPos < 4) and i < 12)
+		{
+			cout << "\nKeep trying!" << endl;
+		}
+		else if ((countNum < 4 or countNumAndPos < 4) and i == 12)
+		{
+			cout << endl;
+			printSpaces(22);  cout << u8"╔═════════════════════════════════════════════════╗" << endl;
+			printSpaces(22);  cout << u8"║                   YOU'VE LOST!                  ║" << endl;
+			printSpaces(22);  cout << u8"║                                                 ║" << endl;
+			printSpaces(22);  cout << u8"║  The code of the germans was: ";
+			for (int i = 0; i < 4; i++)
+			{
+				cout << secretCode[i] << " ";
+			}
+			cout << u8"          ║" << endl;
+			printSpaces(22);  cout << u8"╚═════════════════════════════════════════════════╝" << endl;
+		}
+	}
+}
 
 void printAIMenu()
 {
@@ -252,9 +291,11 @@ void printAIMenu()
 	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces(14);  cout << u8"║              |---------PLAY AGAINST COMPUTER----------|         ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║ 1. Play                                                         ║" << endl;
+	printSpaces(14);  cout << u8"║ 1. Easy mode (no repeating digits in code)                      ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
-	printSpaces(14);  cout << u8"║ 2. Exit                                                         ║" << endl;
+	printSpaces(14);  cout << u8"║ 2. Hard mode (repeating digits in code)                         ║" << endl;
+	this_thread::sleep_for(chrono::milliseconds(300));
+	printSpaces(14);  cout << u8"║ 3. Exit                                                         ║" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
 	printSpaces(14);  cout << u8"╚═════════════════════════════════════════════════════════════════╝" << endl;
 	this_thread::sleep_for(chrono::milliseconds(300));
@@ -269,9 +310,12 @@ bool againstAI(int arr1[], int br)
 	switch (userInput)
 	{
 	case 1:
-		playAI(arr1, br);
+		playAIEasy(arr1, br);
 		break;
 	case 2:
+		playAIHard(arr1, br);
+		break;
+	case 3:
 		return false;
 		break;
 	default: cout << "\n Please enter a valid input!\n"; break;
@@ -304,9 +348,23 @@ void easyPerson(int secretCode[], int cnt)
 			cout << "\nYou've won!" << endl;
 			break;
 		}
-		else if (countNum < 4 or countNumAndPos < 4)
+		else if ((countNum < 4 or countNumAndPos < 4) and i < 12)
 		{
 			cout << "\nKeep trying!" << endl;
+		}
+		else if ((countNum < 4 or countNumAndPos < 4) and i == 12)
+		{
+			cout << endl;
+			printSpaces(22);  cout << u8"╔═════════════════════════════════════════════════╗" << endl;
+			printSpaces(22);  cout << u8"║                   YOU'VE LOST!                  ║" << endl;
+			printSpaces(22);  cout << u8"║                                                 ║" << endl;
+			printSpaces(22);  cout << u8"║  The code of the germans was: ";
+			for (int i = 0; i < 4; i++)
+			{
+				cout << secretCode[i] << " ";
+			}
+			cout << u8"          ║" << endl;
+			printSpaces(22);  cout << u8"╚═════════════════════════════════════════════════╝" << endl;
 		}
 	}
 }
@@ -335,9 +393,23 @@ void hardPerson(int secretCode[], int cnt)
 			cout << "\nYou've won!" << endl;
 			break;
 		}
-		else if (countNum < 4 or countNumAndPos < 4)
+		else if ((countNum < 4 or countNumAndPos < 4) and i < 12)
 		{
 			cout << "\nKeep trying!" << endl;
+		}
+		else if ((countNum < 4 or countNumAndPos < 4) and i == 12)
+		{
+			cout << endl;
+			printSpaces(22);  cout << u8"╔═════════════════════════════════════════════════╗" << endl;
+			printSpaces(22);  cout << u8"║                   YOU'VE LOST!                  ║" << endl;
+			printSpaces(22);  cout << u8"║                                                 ║" << endl;
+			printSpaces(22);  cout << u8"║  The code of the germans was: ";
+			for (int i = 0; i < 4; i++)
+			{
+				cout << secretCode[i] << " ";
+			}
+			cout << u8"          ║" << endl;
+			printSpaces(22);  cout << u8"╚═════════════════════════════════════════════════╝" << endl;
 		}
 	}
 }
@@ -474,7 +546,7 @@ int main()
 	srand(time(NULL));
 	system("chcp 65001");
 	initialGreeting();
-	int arr1[10],arr2[10];
+	int arr1[10];
 	int br = 0;
 	while (mainMenu(arr1,br));
 }
