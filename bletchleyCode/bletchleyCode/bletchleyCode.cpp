@@ -9,6 +9,14 @@ using namespace std;
 
 // PRESENTATION LAYER
 
+void printSpaces(unsigned short int n) // prints spaces
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << " ";
+	}
+}
+
 void initialGreeting() // prints the greeting
 {
 	cout << u8"                          █ █ █ █▀▀ █   █▀▀ █▀█ █▄ ▄█ █▀▀  ▀█▀ █▀█" << endl;
@@ -267,14 +275,6 @@ void genArrHard(int arr[]) // generates secret code hard mode
 	for (int i = 0; i < 4; i++)
 	{
 		arr[i] = rand() % 7;
-	}
-}
-
-void printSpaces(unsigned short int n) // prints spaces
-{
-	for (int i = 0; i < n; i++)
-	{
-		cout << " ";
 	}
 }
 
